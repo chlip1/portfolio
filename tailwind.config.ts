@@ -9,9 +9,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        darkBlue: "#1E1E2E",
+        darkPurple: "#3B3B58",
       },
+      backgroundImage: {
+        'gradient-dark': "linear-gradient(to bottom, #1E1E2E, #3B3B58)",
+      }
     },
   },
   plugins: [],
