@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 export default {
+  darkMode: 'class',
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -14,7 +15,7 @@ export default {
       },
       backgroundImage: {
         'gradient-dark': "linear-gradient(to bottom, #1E1E2E, #3B3B58)",
-      }
+      },
     },
   },
   plugins: [],
