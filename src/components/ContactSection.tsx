@@ -2,6 +2,7 @@
 import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
+import emailjs from "emailjs-com";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -17,22 +18,24 @@ export default function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const { name, email, message } = formData;
+
+    if (!name || !email || !message) {
+      toast.error("All fields are required!");
+      return;
+    }
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        toast.success("Message sent successfully!");
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        toast.error(`Failed to send message. Error code: ${response.status}`);
-      }
+      await emailjs.send(
+        process.env.SERVICE_ID ?? "",
+        process.env.TEMPLATE_ID ?? "",
+        formData,
+        process.env.PUBLIC_KEY ?? "",
+      );
+      toast.success("Message sent successfully!");
+      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
-      console.error("Catch block error:", error);
+      console.error("Email sending error:", error);
       toast.error("Something went wrong. Please try again.");
     }
   };

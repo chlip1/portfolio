@@ -57,7 +57,7 @@ export default function TechnologiesSection() {
               key={index}
               className="flex flex-col items-center bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
               data-aos="zoom-in"
-              data-aos-delay={index * 100}
+              data-aos-delay={index * 50}
             >
               {tech.icon}
               <p className="text-gray-700 font-semibold mt-4">{tech.name}</p>
