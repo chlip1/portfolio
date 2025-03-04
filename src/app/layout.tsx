@@ -7,7 +7,7 @@ import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 export default function RootLayout({
-  children,
+ children,
 }: {
   children: React.ReactNode;
 }) {
@@ -29,13 +29,13 @@ export default function RootLayout({
 
       <link rel="icon" href="/favicon.ico" />
 
-      <title>Łukasz Chlipała - Portfolio Fullstack Developera</title>
+      <title>Łukasz Chlipała - Portfolio Software Engineer</title>
     </head>
     <body className="bg-white text-gray-900">
-    <Toaster position="bottom-right" />
-    <Navbar />
-    <AOSProvider>{children}</AOSProvider>
-    <Footer />
+      <Toaster position="bottom-right" />
+      <Navbar />
+      <AOSProvider>{children}</AOSProvider>
+      <Footer />
     </body>
     </html>
   );
