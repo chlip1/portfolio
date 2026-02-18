@@ -19,21 +19,30 @@ export default function AboutSection() {
             data-aos-delay="200"
           >
             <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-4">
-              Hello! I&#39;m a passionate{" "}
+              Hello! I&apos;m a passionate{" "}
               <span className="font-semibold text-gray-900">
-                Full Stack Software Engineer
-              </span>{" "}
+    Full Stack Software Engineer
+  </span>{" "}
               with expertise in{" "}
               <span className="font-semibold text-gray-900">TypeScript</span>.
-              I specialize in building scalable web applications and designing
-              intuitive user interfaces.
+              I specialize in building scalable web applications from the ground up,
+              designing robust backend architectures, implementing clean APIs, and
+              crafting intuitive user interfaces that users actually enjoy working with.
+            </p>
+            <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-4">
+              I have hands-on experience with{" "}
+              <span className="font-semibold text-gray-900">AWS cloud services</span>,
+              focusing on serverless solutions, event-driven architectures, and infrastructure
+              automation. I&apos;m deeply invested in backend performance optimization, whether
+              it&apos;s reducing latency, improving database queries, or designing efficient
+              data flows that scale under real-world traffic.
             </p>
             <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-              I also have hands-on experience with{" "}
-              <span className="font-semibold text-gray-900">AWS</span>, focusing
-              on serverless solutions, and enjoy optimizing backend performance.
-              My goal is to create applications that not only work efficiently
-              but also delight users.
+              Beyond shipping features, I care about engineering quality: maintainable code,
+              effective testing strategies, observability in production, and building systems
+              that teams can confidently evolve. My goal is to create applications that not
+              only work efficiently but are also reliable, developer-friendly, and deliver
+              real value to users.
             </p>
           </div>
 
@@ -42,7 +51,7 @@ export default function AboutSection() {
             data-aos="fade-left"
           >
             <img
-              src="/LC_IMG.jpg"
+              src="/LC_IMG.PNG"
               alt="Profile"
               className="w-full h-auto object-cover"
             />

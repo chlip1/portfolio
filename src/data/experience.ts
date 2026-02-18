@@ -2,6 +2,21 @@ import { Experience } from "@/app/types";
 
 export const experiences: Experience[] = [
   {
+    company: "ADTRAN",
+    role: "Software Engineer II",
+    date: "July 2025 - Present",
+    description: "Developing and maintaining scalable backend services and full-stack features for telecommunications infrastructure solutions. Responsible for API design, system architecture decisions, cloud deployments, and improving developer workflows. Working with distributed systems, event-driven patterns, and modern DevOps practices to deliver reliable, high-performance software.",
+    skills: [
+      "TypeScript",
+      "Node.js",
+      "AWS",
+      "Serverless",
+      "CI/CD",
+      "Microservices",
+      "Event-driven architecture"
+    ]
+  },
+  {
     role: "Associate Software Engineer",
     company: "Kainos",
     date: "October 2024 - now",

@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy
 
 on:
   push:
@@ -8,10 +8,14 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+
     env:
-      SERVICE_ID: ${{ secrets.SERVICE_ID }}
-      TEMPLATE_ID: ${{ secrets.TEMPLATE_ID }}
-      PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
+      NODE_VERSION: '22'
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -19,17 +23,33 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Build and export
+      - name: Inject shared Next.js envs
+        run: |
+          echo "NEXT_PUBLIC_SERVICE_ID=${{ secrets.SERVICE_ID }}" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_TEMPLATE_ID=${{ secrets.TEMPLATE_ID }}" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_PUBLIC_KEY=${{ secrets.PUBLIC_KEY }}" >> $GITHUB_ENV
+
+      - name: Build Page
         run: npm run build
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
-          cname: "chlipala.dev"
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Deploy to S3
+        run: |
+          BUCKET="${{ secrets.AWS_BUCKET }}"
+          aws s3 sync ./out "s3://$BUCKET" --delete
+
+      - name: Invalidate CloudFront Cache
+        run: |
+          DIST="${{ secrets.CLOUDFRONT_DISTRIBUTION }}"
+          aws cloudfront create-invalidation --distribution-id "$DIST" --paths "/*"
