@@ -1,42 +1,42 @@
-"use client";
+import type { Metadata } from "next";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AOSProvider from "@/components/AOSProvider";
-import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
-export default function RootLayout({
- children,
-}: {
-  children: React.ReactNode;
-}) {
+const sans = Geist({ subsets: ["latin", "latin-ext"], variable: "--font-sans" });
+const mono = Geist_Mono({ subsets: ["latin", "latin-ext"], variable: "--font-mono" });
+const display = Instrument_Serif({
+  subsets: ["latin", "latin-ext"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-display",
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://chlipala.dev"),
+  title: "Łukasz Chlipała · Software Engineer",
+  description:
+    "Software engineer in Gdańsk building serverless backends on AWS and full-stack TypeScript products. Software Engineer II at ADTRAN, building JoinBee.",
+  authors: [{ name: "Łukasz Chlipała" }],
+  openGraph: {
+    title: "Łukasz Chlipała · Software Engineer",
+    description: "Serverless backends on AWS and full-stack TypeScript products.",
+    url: "https://chlipala.dev",
+    type: "website",
+    images: ["/avatar.jpg"],
+  },
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pl">
-    <head>
-      <meta charSet="UTF-8" />
-      <meta
-        name="description"
-        content="Portfolio Łukasza Chlipały – Fullstack Developera specjalizującego się w chmurze oraz nowoczesnych technologiach webowych, takich jak React, Next.js i AWS."
-      />
-      <meta
-        name="keywords"
-        content="Łukasz Chlipała, fullstack developer, portfolio, cloud, AWS, React, Next.js, TypeScript, web development, programista chmura"
-      />
-      <meta name="author" content="Łukasz Chlipała" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="robots" content="index, follow" />
-
-      <link rel="icon" href="/favicon.ico" />
-
-      <title>Łukasz Chlipała - Portfolio Software Engineer</title>
-    </head>
-    <body className="bg-white text-gray-900">
-      <Toaster position="bottom-right" />
-      <Navbar />
-      <AOSProvider>{children}</AOSProvider>
-      <Footer />
-    </body>
+    <html lang="en" className={`${sans.variable} ${mono.variable} ${display.variable}`}>
+      <body>
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

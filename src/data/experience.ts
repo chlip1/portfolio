@@ -3,38 +3,54 @@ import { Experience } from "@/app/types";
 export const experiences: Experience[] = [
   {
     company: "ADTRAN",
-    role: "Software Engineer II",
-    date: "July 2025 - Present",
-    description: "Developing and maintaining scalable backend services and full-stack features for telecommunications infrastructure solutions. Responsible for API design, system architecture decisions, cloud deployments, and improving developer workflows. Working with distributed systems, event-driven patterns, and modern DevOps practices to deliver reliable, high-performance software.",
-    skills: [
-      "TypeScript",
-      "Node.js",
-      "AWS",
-      "Serverless",
-      "CI/CD",
-      "Microservices",
-      "Event-driven architecture"
-    ]
+    roles: [
+      {
+        title: "Software Engineer II",
+        date: "Jul 2025 — Present",
+        highlights: [
+          "Single-handedly migrated 1.3M subscribers (end users) from an existing system to a new microservice, from architecture to cutover.",
+          "Built a global search service on OpenSearch that ingests data from many sources into one index, replacing several separate indexes that were hard to query together.",
+          "Built a gateway proxy service that connects to customer devices over a tunnel and renders the router's own UI directly inside our app.",
+        ],
+      },
+    ],
+    skills: ["TypeScript", "Node.js", "AWS", "OpenSearch", "WebSockets", "Microservices", "Event-driven"],
   },
   {
-    role: "Associate Software Engineer",
     company: "Kainos",
-    date: "October 2024 - now",
-    description: "Worked on the Images In Garages project, i.e. adding the ability to add a photo of the vehicle during the MOT test. Solution added to existing frontend application in PHP, creating additional backend using Serverless, Typescript, AWS.",
-    skills: ["TypeScript", "AWS", "Serverless", "NodeJS", "PHP", "SQL/Non-SQL Databases"]
-  },
-  {
-    role: "Trainee Software Engineer",
-    company: "Kainos",
-    date: "July 2023 - September 2024",
-    description: "Worked on various projects focusing on delivering scalable and compliant solutions. Implementation of a serverless solution for data integration between multiple databases of newly registered vehicles in the UK. Created integration tests using Playwright to replace legacy Behat tests for an existing PHP API. Developed a survey application using Java Spring, AWS, and Angular, ensuring compliance with GDS guidelines.",
-    skills: ["TypeScript", "AWS", "Serverless", "Lambda", "Playwright", "PHP", "Angular", "Integration Testing", "SQL/Non-SQL Databases"]
+    roles: [
+      {
+        title: "Associate Software Engineer",
+        date: "Oct 2024 — Jun 2025",
+        highlights: [
+          "DVSA MOT service: Images in Garages, attaching vehicle photos to the MOT test. Extended the PHP frontend and built the serverless TypeScript backend on AWS.",
+          "Moved a Java 8 service from EC2 to Docker on Fargate.",
+        ],
+      },
+      {
+        title: "Trainee Software Engineer",
+        date: "Jul 2023 — Sep 2024",
+        highlights: [
+          "DVLA Import: cut the time to propagate a vehicle import across UK registries from 10 minutes to 2.",
+          "Rewrote integration tests of the main MOT API from Behat to Playwright.",
+          "Spark Forms: customer satisfaction surveys for UK government websites in Java Spring Boot, Angular and AWS.",
+        ],
+      },
+    ],
+    skills: ["TypeScript", "AWS Lambda", "Serverless", "Fargate", "PHP", "Playwright", "Angular", "Java Spring"],
   },
   {
     company: "Radmor S.A.",
-    role: "Software Engineer",
-    date: "July 2022 - June 2023",
-    description: "Developed software to facilitate data transfer between a Python-based test environment and a C++ server. Designed and implemented interactive map applications using real-time location data. Contributed to an internship project and gained experience in Linux environment management and documentation.",
-    skills: ["Python", "C++", "Linux", "SQL", "QT"]
-  }
+    roles: [
+      {
+        title: "Software Engineer",
+        date: "Jul 2022 — Jun 2023",
+        highlights: [
+          "Data transfer between a Python test environment and a C++ server.",
+          "Interactive map applications driven by real-time location data of radio stations and links between them.",
+        ],
+      },
+    ],
+    skills: ["Python", "C++", "Qt", "Linux", "SQL"],
+  },
 ];

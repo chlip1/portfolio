@@ -1,52 +1,63 @@
-import { ArrowDownTrayIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+
+const stats = [
+  { value: "1.3M", label: "subscribers migrated" },
+  { value: "5×", label: "faster vehicle import" },
+  { value: "4 yrs", label: "in production" },
+];
 
 export default function HeroSection() {
   return (
-    <section className="h-screen flex flex-col justify-center items-center text-center bg-white px-4">
-      <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-gray-800 mb-4">
-        Łukasz Chlipała
-      </h1>
-      <p className="text-xl sm:text-2xl md:text-3xl text-gray-500 mb-8 max-w-3xl">
-        Full Stack Software Engineer
-      </p>
-
-      <div className="flex flex-col sm:flex-row justify-center items-center sm:space-x-4 sm:space-y-0 space-y-4 mb-6 w-full max-w-md sm:max-w-none">
-        <a
-          href="/Łukasz_Chlipała_CV.pdf"
-          download="Łukasz_Chlipała_CV.pdf"
-          className="flex items-center justify-center bg-black text-white px-6 py-2 rounded-lg w-full sm:w-48 hover:bg-cyan-600 transition duration-300"
-        >
-          <ArrowDownTrayIcon className="w-6 h-6 mr-2"/>
-          Download CV
-        </a>
-        <a
-          href="#about"
-          className="flex items-center justify-center border-2 border-gray-800 text-gray-800 px-6 py-2 rounded-lg w-full sm:w-48 hover:bg-cyan-600 hover:text-white hover:border-cyan-600 transition duration-300"
-        >
-          <UserCircleIcon className="w-6 h-6 mr-2"/>
-          About Me
-        </a>
+    <section id="top" className="pb-16 pt-14 sm:pb-24 sm:pt-24">
+      <div className="grid items-end gap-10 md:grid-cols-[1fr_auto]">
+        <div className="reveal">
+          <p className="section-label flex items-center gap-2">
+            <span className="relative flex h-2 w-2" aria-hidden>
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60 motion-reduce:hidden" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+            </span>
+            Software Engineer II at ADTRAN · Gdańsk
+          </p>
+          <h1 className="mt-6 font-display text-[clamp(3.5rem,11vw,7.5rem)] leading-[0.92] tracking-tight">
+            Łukasz
+            <br />
+            <span className="italic">Chlipała</span>
+            <span className="text-accent">.</span>
+          </h1>
+          <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted">
+            I build <span className="text-ink">serverless backends on AWS</span> and the TypeScript products on top of
+            them. Four years in production: telecom device management at ADTRAN, UK government services
+            at Kainos, and <span className="text-ink">JoinBee</span>, a SaaS for schools and clubs, after hours.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+            <a href="#contact" className="group rounded-full bg-ink px-5 py-2.5 text-paper transition-colors hover:bg-accent">
+              Get in touch <span className="inline-block transition-transform group-hover:translate-x-0.5">→</span>
+            </a>
+            <a href="https://github.com/chlip1" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 link-underline">
+              <FaGithub aria-hidden /> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/lchlipala" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 link-underline">
+              <FaLinkedin aria-hidden /> LinkedIn
+            </a>
+          </div>
+        </div>
+        <img
+          src="/avatar.jpg"
+          alt="Illustrated portrait of Łukasz Chlipała"
+          width={240}
+          height={240}
+          className="reveal hidden h-60 w-60 rotate-2 rounded-2xl border border-line object-cover shadow-[6px_6px_0_rgb(var(--ink))] transition-transform duration-300 hover:-rotate-1 md:block"
+        />
       </div>
-
-      <div className="flex space-x-6 mt-4">
-        <a
-          href="https://github.com/chlip1"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-gray-800 hover:text-cyan-600 transition duration-300"
-        >
-          <FaGithub className="w-8 h-8"/>
-        </a>
-        <a
-          href="https://www.linkedin.com/in/lchlipala"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-gray-800 hover:text-cyan-600 transition duration-300"
-        >
-          <FaLinkedin className="w-8 h-8"/>
-        </a>
-      </div>
+      <dl className="reveal mt-16 grid grid-cols-3 divide-x divide-line border-y border-line">
+        {stats.map((stat) => (
+          <div key={stat.label} className="px-3 py-5 first:pl-0 sm:px-6">
+            <dt className="sr-only">{stat.label}</dt>
+            <dd className="font-display text-3xl leading-none sm:text-5xl">{stat.value}</dd>
+            <dd className="mt-2 font-mono text-[10px] uppercase tracking-wider text-muted sm:text-xs">{stat.label}</dd>
+          </div>
+        ))}
+      </dl>
     </section>
-);
+  );
 }

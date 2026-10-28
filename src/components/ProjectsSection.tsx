@@ -1,82 +1,56 @@
-import {FaGithub, FaExternalLinkAlt, FaBook} from "react-icons/fa";
+import Section from "@/components/Section";
 import { projects } from "@/data";
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="py-16 bg-gray-50">
-      <div className="container mx-auto px-6 lg:max-w-[60vw]">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4" data-aos="fade-down">
-            Projects
-          </h2>
-          <div className="w-24 h-1 mx-auto bg-cyan-500 rounded"></div>
-        </div>
-
-        <div className="space-y-12">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className="flex flex-col lg:flex-row items-center gap-8 bg-white shadow-md rounded-lg p-6"
-              data-aos="fade-up"
+    <Section id="projects" index="02" title="Projects">
+      <ul className="grid gap-6 sm:grid-cols-2">
+        {projects.map((project, index) => {
+          const featured = index === 0;
+          return (
+            <li
+              key={project.title}
+              className={`reveal group flex flex-col overflow-hidden rounded-2xl border border-line bg-card transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:border-ink/40 hover:shadow-[0_18px_40px_-24px_rgb(var(--ink)/0.45)] ${
+                featured ? "sm:col-span-2 lg:flex-row" : ""
+              }`}
             >
-              <div className="lg:w-1/3 w-full">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-auto rounded-lg object-cover shadow-lg"
-                />
-              </div>
-
-              <div className="lg:w-2/3 w-full space-y-4">
-                <h3 className="text-2xl font-bold text-gray-800">
-                  {project.title}
-                </h3>
-                <p className="text-gray-600">{project.description}</p>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, idx) => (
-                    <span
-                      key={idx}
-                      className="bg-gray-200 text-gray-800 text-sm font-semibold px-3 py-1 rounded-full"
-                    >
+              {project.image && (
+                <div
+                  className={`aspect-[16/10] overflow-hidden border-line ${
+                    featured ? "border-b lg:aspect-auto lg:w-3/5 lg:border-b-0 lg:border-r" : "border-b"
+                  }`}
+                >
+                  <img
+                    src={project.image}
+                    alt={`${project.title} screenshot`}
+                    loading="lazy"
+                    className="h-full w-full object-cover object-left-top transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                </div>
+              )}
+              <div className={`flex flex-1 flex-col p-6 ${featured ? "lg:p-8" : ""}`}>
+                <p className="section-label">{project.tagline}</p>
+                <h3 className={`mt-2 font-display leading-none ${featured ? "text-5xl" : "text-3xl"}`}>{project.title}</h3>
+                <p className="mt-4 leading-relaxed text-muted">{project.description}</p>
+                <ul className="mt-5 flex flex-wrap gap-2">
+                  {project.technologies.map((tech) => (
+                    <li key={tech} className="rounded-full border border-line px-2.5 py-0.5 font-mono text-[11px] text-muted">
                       {tech}
-                    </span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-auto flex flex-wrap gap-x-5 gap-y-2 pt-6 text-sm">
+                  {project.links.map((link) => (
+                    <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer" className="link-underline">
+                      {link.label} ↗
+                    </a>
                   ))}
                 </div>
-
-                <div className="flex space-x-4 mt-4">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-800 hover:text-cyan-600 transition duration-300"
-                  >
-                    <FaGithub className="w-6 h-6"/>
-                  </a>
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-800 hover:text-cyan-600 transition duration-300"
-                  >
-                    <FaExternalLinkAlt className="w-6 h-6"/>
-                  </a>
-                  {project.docs && (
-                    <a
-                      href={project.docs}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-800 hover:text-cyan-600 transition duration-300"
-                    >
-                      <FaBook className="w-6 h-6"/>
-                    </a>
-                  )}
-                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+            </li>
+          );
+        })}
+      </ul>
+    </Section>
   );
 }

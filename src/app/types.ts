@@ -2,24 +2,35 @@ export interface Education {
   school: string;
   degree: string;
   dates: string;
-  details: string;
-  logo: string;
+}
+
+export interface Role {
+  title: string;
+  date: string;
+  highlights: string[];
 }
 
 export interface Experience {
-  role: string;
   company: string;
-  description: string;
-  date: string;
+  roles: Role[];
   skills: string[];
+}
+
+export interface ProjectLink {
+  label: string;
+  href: string;
 }
 
 export interface Project {
   title: string;
+  tagline: string;
   description: string;
   technologies: string[];
-  image: string;
-  github?: string;
-  live: string;
-  docs?: string;
+  image?: string;
+  links: ProjectLink[];
+}
+
+export interface SkillGroup {
+  name: string;
+  items: string[];
 }
