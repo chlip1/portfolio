@@ -29,12 +29,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Inject shared Next.js envs
-        run: |
-          echo "NEXT_PUBLIC_SERVICE_ID=${{ secrets.SERVICE_ID }}" >> $GITHUB_ENV
-          echo "NEXT_PUBLIC_TEMPLATE_ID=${{ secrets.TEMPLATE_ID }}" >> $GITHUB_ENV
-          echo "NEXT_PUBLIC_PUBLIC_KEY=${{ secrets.PUBLIC_KEY }}" >> $GITHUB_ENV
-
       - name: Build Page
         run: npm run build
 
